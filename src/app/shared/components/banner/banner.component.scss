@@ -1,0 +1,44 @@
+
+.banner {
+  height: 280px;
+  width: 100%;
+  background-color: #D7EFFB;
+  border-radius: 15px;
+
+  &-text{
+    color: rgb(99, 97, 97);
+    margin-top: 50px;
+  }
+
+  h1{
+    margin: 0;
+    font-size: 2.5em;
+    font-weight: 400;
+  }
+
+  h2{
+    margin: 0;
+    font-size: 2em;
+    font-weight: 400;
+  }
+
+  &-image{
+    padding: 15px 50px 0 0 ;
+    text-align: right; 
+  }
+}
+
+ ::ng-deep .banner-button{
+    background-color: white;
+    color: #ff3a00;
+    border: 0;
+    border-radius: 13px;
+    height: 50px;
+    
+    &:enabled:hover {
+      background-color: white;
+      color: #ff3a00;
+      border: 0;
+    }
+    
+  }

@@ -1,0 +1,29 @@
+.products-search {
+  display: flex;
+  background-color: rgb(212, 209, 209);
+  border-radius: 10px;
+  width: 275px;
+  height: 35px;
+  
+  .pi{
+    width: 22px;
+    font-size: 1.3em;
+    color: #ff3a00;
+    margin-top: 7px;
+    margin-left: 10px;
+  }
+
+  &-input{
+    margin-left: 10px;
+    height: 35px;
+    background-color: transparent;
+    color: gray;
+    border: 0;
+
+    &:focus , &:active {
+      border: none;
+      outline: none;
+    }
+  }
+
+}

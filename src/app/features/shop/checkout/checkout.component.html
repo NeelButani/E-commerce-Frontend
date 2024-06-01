@@ -1,0 +1,161 @@
+<div class="checkout-page">
+  <div>
+    <p-button
+        label="Back to cart"
+        icon="pi pi-arrow-left"
+        (onClick)="backToShopping()"
+    >
+    </p-button>
+  </div>
+  <div class="grid checkout-form">
+    <div class="col-8">
+      <form [formGroup]="checkoutFormGroup">
+        <div class="p-fluid formgrid grid">
+          <!-- name -->
+          <div class="field col-4">
+            <label for="name">Name</label><br />
+            <input
+                pInputText
+                type="text"
+                id="name"
+                formControlName="name"
+                class="text-base text-color border-2 p-2 w-9"
+            >
+            <div *ngFor="let validation of validationMessages.name">
+              <small *ngIf="isInvalid('name',validation.type)"
+                     class="p-error">{{ validation.message }}
+              </small>
+            </div>
+          </div>
+          <!-- email -->
+          <div class="field col-4">
+            <label for="email">Email</label><br />
+            <input
+                formControlName="email"
+                id="email"
+                type="text"
+                pInputText
+                class="text-base text-color border-2 p-2 w-9"
+            />
+            <div *ngFor="let validation of validationMessages.email">
+              <small *ngIf="isInvalid('email',validation.type)"
+                     class="p-error">{{ validation.message }}
+              </small>
+            </div>            
+          </div>
+          <!-- phone  -->
+          <div class="field col-4">
+            <label for="color">Phone</label><br />
+            <input
+                formControlName="phone"
+                id="phone"
+                type="text"
+                pInputText
+                class="text-base text-color border-2 p-2 w-9"
+            >
+            <div *ngFor="let validation of validationMessages.phone">
+              <small *ngIf="isInvalid('phone',validation.type)"
+                     class="p-error">{{ validation.message }}
+              </small>
+            </div>
+          </div>
+        </div>
+
+        <div class="p-fluid formgrid grid">
+          <!-- street -->
+          <div class="field col-4">
+            <label for="street">Street</label><br />
+            <input
+                class="text-base text-color border-2 p-2 w-9"
+                formControlName="street"
+                id="street"
+                type="text"
+                pInputText
+            />
+            <div *ngFor="let validation of validationMessages.street">
+              <small *ngIf="isInvalid('street',validation.type)"
+                     class="p-error">{{ validation.message }}
+              </small>
+            </div>
+          </div>
+
+          <!-- apartment -->
+          <div class="field col-4">
+            <label for="street">Apartment</label><br />
+            <input
+                class="text-base text-color border-2 p-2 w-9"
+                formControlName="apartment"
+                id="apartment"
+                type="text"
+                pInputText
+            />
+            <div *ngFor="let validation of validationMessages.appartment">
+              <small *ngIf="isInvalid('apartment',validation.type)"
+                     class="p-error">{{ validation.message }}
+              </small>
+            </div>
+          </div>
+
+          <!-- City -->
+          <div class="field col-4">
+            <label for="city">City</label><br />
+            <input
+                class="text-base text-color border-2 p-2 w-9"
+                formControlName="city"
+                id="city"
+                type="text"
+                pInputText
+            />
+            <div *ngFor="let validation of validationMessages.city">
+              <small *ngIf="isInvalid('city',validation.type)"
+                     class="p-error">{{ validation.message }}
+              </small>
+            </div>            
+          </div>
+
+          <!-- Zip code -->
+          <div class="field col-4">
+            <label for="street">Zip Code</label><br>
+            <input class="text-base text-color border-2 p-2 w-9" formControlName="zip" id="zip" type="text" pInputText />
+            <div *ngFor="let validation of validationMessages.zip">
+              <small *ngIf="isInvalid('zip',validation.type)"
+                     class="p-error">{{ validation.message }}
+              </small>
+            </div>
+          </div>
+
+          <div class="p-field p-col-4">
+            <label for="country">Country</label><br />
+            <p-dropdown
+                styleClass="dropdown"   
+                [options]="countries"
+                formControlName="country"
+                optionLabel="name"
+                optionValue="id"
+                [filter]="true"
+                filterBy="name"
+                [showClear]="true"
+                placeholder="Select a Country"
+            ></p-dropdown>
+            <div *ngFor="let validation of validationMessages.country">
+              <small *ngIf="isInvalid('country',validation.type)"
+                     class="p-error">{{ validation.message }}
+              </small>
+            </div>
+          </div>
+
+        </div>
+      </form>
+    </div>
+    <div class="col-4">
+      <app-order-summary></app-order-summary>
+      <div class="checkout-button">
+        <p-button
+            [disabled]="checkoutFormGroup.invalid"
+            label="Place-Order"
+            (onClick)="placeOrder()"
+        ></p-button>
+      </div>
+    </div>
+  </div>
+</div>

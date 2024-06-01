@@ -1,0 +1,42 @@
+.checkout-page {
+  min-height: 500px;
+
+   ::ng-deep button {
+    background-color: rgb(251, 95, 39);
+    border: 0;
+  }
+
+  .checkout {
+    &-form {
+      margin-top: 25px;
+    }
+
+    &-button {
+      margin-top: 20px;
+      button {
+        width: 100%;
+      }
+    }
+  }
+}
+
+input {
+  width: 100%;
+  padding: 8px;
+  border: 1px solid #ccc; // Light gray border for the input
+  font-size: 14px;
+  color: #666; // Medium gray color for the text inside input
+  box-sizing: border-box; // Include padding and border in input width
+}
+
+
+label {
+  font-size: 16px;
+  color: #555; // Dark gray color for the label
+  margin-bottom: 5px;
+}
+
+::ng-deep .dropdown{
+  margin-top: 10px;
+  width: 100%;  
+}

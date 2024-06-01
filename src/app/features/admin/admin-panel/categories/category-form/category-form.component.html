@@ -1,0 +1,70 @@
+<p-toast></p-toast>
+<div class="admin-page">
+  <p-card [header]="editMode ? 'Edit Category' : 'Add Category'"
+          subheader="Add or Edit category"> 
+    <div class="grid mb-5">
+      <div class="col-12">
+        <p-toolbar>
+          <div class="p-toolbar-group-start">
+          </div>
+          <div class="p-toolbar-group-center">
+          </div>
+          <div class="p-toolbar-group-end">
+            <p-button [disabled]="form.invalid"
+                      (click)="onSubmit()"
+                      [label]="editMode ? 'Update' : 'Create'"
+                      [raised]="true"
+                      severity="primary"
+                      icon="pi pi-plus"
+                      class="mr-4"></p-button>
+            <p-button label="Cancel"
+                      routerLink="/categories"
+                      [raised]="true"
+                      severity="secondary"
+                      icon="pi pi-times"></p-button>
+          </div>
+        </p-toolbar>
+      </div>
+    </div>
+    <div class="grid">
+      <div class="col-12">
+        <form [formGroup]="form">
+          <div class="formgrid grid">
+            <div class="field col-5">
+              <label for="category">Category name</label><br>
+              <input formControlName="name"
+                     id="category"
+                     type="text"
+                     pInputText
+                     class="text-base text-color border-2 p-2 w-9">
+              <div *ngFor="let validation of validationMessages.categoryName">
+                <small *ngIf="isInvalid('name',validation.type)"
+                       class="p-error">{{ validation.message }}
+                </small>
+              </div>
+            </div>
+            <div class="field col-5">
+              <label for="icon">Icon</label><br>
+              <input formControlName="icon"
+                     id="icon"
+                     type="text"
+                     pInputText
+                     class="text-base text-color border-2 p-2 w-9">
+              <div *ngFor="let validation of validationMessages.categoryIcon">
+                <small *ngIf="isInvalid('icon',validation.type)"
+                       class="p-error">{{ validation.message }}
+                </small>
+              </div>
+            </div>
+
+            <div class="field col">
+              <label for="color">Color</label><br>
+              <p-colorPicker formControlName="color"></p-colorPicker>
+            </div>
+
+          </div>
+        </form>
+      </div>
+    </div>
+  </p-card>
+</div>

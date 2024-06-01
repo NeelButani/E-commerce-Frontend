@@ -1,0 +1,163 @@
+<p-toast></p-toast>
+<div class="admin-page">
+  <p-card [header]="editMode ? 'Edit Category' : 'Add Product'"
+         subheader="Add or Edit Products">
+    <div class="grid mb-5">
+      <div class="col-12">
+        <p-toolbar>
+          <div class="p-toolbar-group-start">
+          </div>
+          <div class="p-toolbar-group-center">
+          </div>
+          <div class="p-toolbar-group-end">
+            <p-button [disabled]="this.productForm.invalid"
+                   [label]="editMode ? 'Update' : 'Create'"
+                   [raised]="true"
+                   severity="primary"
+                   icon="pi pi-plus"
+                   (click)=onSubmit()
+                   class="mr-4"></p-button>
+            <p-button label="Cancel"
+                   routerLink="/categories"
+                   [raised]="true"
+                   severity="secondary"
+                   icon="pi pi-times"></p-button>
+          </div>
+        </p-toolbar>
+      </div>
+    </div>
+    <div class="grid">
+      <div class="col-12">
+        <form [formGroup]="productForm">
+          <!-- first row -->
+          <div class="formgrid grid"
+                 style="width: 90%;">
+            <div class="col field">
+              <label for="category">Name</label><br>
+              <input formControlName="name"
+                     id="category"
+                     type="text"
+                     pInputText
+                     class="text-base text-color border-2 p-2"
+                     style="width: 100%;">
+              <!-- validation -->
+              <div *ngFor="let validation of validationMessages.productName">
+                <small *ngIf="isInvalid('name',validation.type)"
+                       class="p-error">{{ validation.message }}
+                </small>
+              </div>
+            </div>
+            <div class="field col">
+              <label for="brand">Brand</label><br>
+              <input formControlName="brand"
+                     id="brand"
+                     type="text"
+                     pInputText
+                     class="text-base text-color border-2 p-2"
+                     style="width: 100%;">
+              <!-- validation -->
+              <div *ngFor="let validation of validationMessages.brand">
+                <small *ngIf="isInvalid('brand',validation.type)"
+                       class="p-error">{{ validation.message }}
+                </small>
+              </div>
+            </div>
+
+            <div class="field col">
+              <label for="price">Price</label><br>
+              <input formControlName="price"
+                     id="price"
+                     type="number"
+                     pInputText
+                     class="text-base text-color border-2 p-2"
+                     formArrayName="price"
+                     style="width: 100%;">
+              <!-- validation -->
+              <div *ngFor="let validation of validationMessages.price">
+                <small *ngIf="isInvalid('price',validation.type)"
+                       class="p-error">{{ validation.message }}
+                </small>
+              </div>
+            </div>
+          </div>
+          <!-- second row -->
+          <div class="formgrid grid mt-3"
+                 style="width: 90%;">
+            <div class="col-4 field">
+              <label for="countInStock">CountInStock</label><br>
+              <input formControlName="countInStock"
+                     id="countInStock"
+                     type="text"
+                     pInputText
+                     class="text-base text-color border-2 p-2"
+                     style="width: 100%;">
+              <!-- validation -->
+              <div *ngFor="let validation of validationMessages.countInStock">
+                <small *ngIf="isInvalid('countInStock',validation.type)"
+                       class="p-error">{{ validation.message }}
+                </small>
+              </div>
+            </div>
+            <div class="col-4 field">
+              <label for="Category">Category</label><br>
+              <p-dropdown [editable]="true"
+                     formControlName="category"
+                     [options]="categories"
+                     optionLabel="name"
+                     optionValue="id"
+                     placeholder="Select a Category"></p-dropdown>
+              <!-- validation -->
+              <div *ngFor="let validation of validationMessages.category">
+                <small *ngIf="isInvalid('category',validation.type)"
+                       class="p-error">{{ validation.message }}
+                </small>
+              </div>
+            </div>
+            <div class="col-4 field">
+              <label for="isFeatured">Is Featured</label><br>
+              <p-inputSwitch formControlName="isFeatured"></p-inputSwitch>
+            </div>
+            <div class="col-12 field">
+              <label for="Description">Description</label><br>
+              <textarea style="width: 100%;"
+                     rows="7"
+                     [autoResize]="true"
+                     pInputTextarea
+                     formControlName="description"></textarea>
+              <!-- validation -->
+              <div *ngFor="let validation of validationMessages.description">
+                <small *ngIf="isInvalid('description',validation.type)"
+                       class="p-error">{{ validation.message }}
+                </small>
+              </div>
+            </div>
+            <div class="col-12 field">
+              <label for="richDescription">Product Details</label><br>
+              <p-editor formControlName="richDescription"
+                     [style]="{ height: '220px' }"></p-editor>
+            </div>
+            <div class="col-12 field">
+              <label for="image">Main Image</label><br>
+              <input (change)="onImageUplaod($event)"
+                     pInputText
+                     type="file"
+                     accept="image/*">
+              <!-- validation -->
+              <div *ngFor="let validation of validationMessages.image">
+                <small *ngIf="isInvalid('image',validation.type)"
+                       class="p-error">{{ validation.message }}
+                </small>
+              </div>
+              <div class="col-2 mt-2 pl-0">
+                <img style="width: 100%;"
+                       [src]="imageDisplay"
+                       alt="">
+              </div>
+            </div>
+          </div>
+        </form>
+      </div>
+    </div>
+
+  </p-card>
+</div>

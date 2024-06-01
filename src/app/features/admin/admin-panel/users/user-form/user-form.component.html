@@ -1,0 +1,158 @@
+<p-toast></p-toast>
+<div class="admin-page">
+  <p-card
+      [header]="editmode ? 'Edit User' : 'Add user'"
+      subheader="You can add or edit user"
+  >
+    <div class="grid mb-5">
+      <div class="col-12">
+        <p-toolbar>
+          <div class="p-toolbar-group-start">
+          </div>
+          <div class="p-toolbar-group-center">
+          </div>
+          <div class="p-toolbar-group-end">
+            <p-button
+                (click) = "onSubmit()"
+                [disabled]="form.invalid"
+                [label]="editmode ? 'Update' : 'Create'"
+                [raised]="true"
+                severity="primary"
+                icon="pi pi-plus"
+                class="mr-4"
+            ></p-button>
+            <p-button
+                label="Cancel"
+                routerLink="/users"
+                [raised]="true"
+                severity="secondary"
+                icon="pi pi-times"
+            ></p-button>
+          </div>
+        </p-toolbar>
+      </div>
+    </div>
+    <div class="grid">
+      <div class="col-12">
+        <form [formGroup]="form">
+          <div class="formgrid grid">
+            <!-- name  -->
+            <div class="field col-4">
+              <label for="name">Name</label><br>
+              <input formControlName="name"
+                     id="category"
+                     type="text"
+                     pInputText
+                     class="text-base text-color border-2 p-2 w-9">
+              <div *ngFor="let validation of validationMessages.name">
+                <small *ngIf="isInvalid('name',validation.type)"
+                       class="p-error">{{ validation.message }}
+                </small>
+              </div>
+            </div>
+            <!-- email -->
+            <div class="field col-4">
+              <label for="email">Email</label><br>
+              <input formControlName="email"
+                     id="email"
+                     type="text"
+                     pInputText
+                     class="text-base text-color border-2 p-2 w-9">
+              <div *ngFor="let validation of validationMessages.email">
+                <small *ngIf="isInvalid('email',validation.type)"
+                       class="p-error">{{ validation.message }}
+                </small>
+              </div>
+            </div>
+            <!-- password -->
+            <div class="field col-4">
+              <label for="password">Password</label><br>
+              <input formControlName="password"
+                     id="password"
+                     type="text"
+                     pInputText
+                     class="text-base text-color border-2 p-2 w-9">
+              <div *ngFor="let validation of validationMessages.password">
+                <small *ngIf="isInvalid('password',validation.type)"
+                       class="p-error">{{ validation.message }}
+                </small>
+              </div>
+            </div>
+            <!-- Phone -->
+            <div class="field col-4">
+              <label for="phone">Phone</label><br>
+              <input formControlName="phone"
+                     id="phone"
+                     type="text"
+                     pInputText
+                     class="text-base text-color border-2 p-2 w-9">
+              <div *ngFor="let validation of validationMessages.phone">
+                <small *ngIf="isInvalid('phone',validation.type)"
+                       class="p-error">{{ validation.message }}
+                </small>
+              </div>
+            </div> 
+             <!-- isAdmin  -->
+             <div class="col-4 field">
+              <label for="isAdmin">Is Admin</label><br>
+              <p-inputSwitch formControlName="isAdmin"></p-inputSwitch>
+            </div>             
+          </div>
+          <div class="formgrid grid">
+            <!-- Street -->
+            <div class="field col-4">
+              <label for="street">Street</label><br>
+              <input formControlName="street"
+                     id="street"
+                     type="text"
+                     pInputText
+                     class="text-base text-color border-2 p-2 w-9">
+            </div>   
+            <!-- appartment  -->
+            <div class="field col-4">
+              <label for="apartment">Apartment</label><br>
+              <input formControlName="apartment"
+                     id="apartment"
+                     type="text"
+                     pInputText
+                     class="text-base text-color border-2 p-2 w-9">
+            </div>
+            <!-- zip code  -->
+            <div class="field col-4">
+              <label for="zip">Zip Code</label><br>
+              <input formControlName="zip"
+                     id="zip"
+                     type="text"
+                     pInputText
+                     class="text-base text-color border-2 p-2 w-9">
+            </div>
+            <!-- city  -->
+            <div class="field col-4">
+              <label for="city">City</label><br>
+              <input formControlName="city"
+                     id="city"
+                     type="text"
+                     pInputText
+                     class="text-base text-color border-2 p-2 w-9">
+            </div>                                          
+            <!-- Country  -->
+            <div class="field col-4">
+              <label for="country">Country</label><br>
+              <p-dropdown
+                  [options]="countries"
+                  formControlName="country"
+                  optionLabel="name"
+                  optionValue="id"
+                  [filter]="true"
+                  filterBy="name"
+                  [showClear]="true"
+                  placeholder="Select a Country"
+              ></p-dropdown>
+            </div>                                          
+          </div>
+        </form>
+      </div>
+    </div>
+
+  </p-card>
+</div>

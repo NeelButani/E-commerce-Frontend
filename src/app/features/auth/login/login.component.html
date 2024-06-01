@@ -1,0 +1,36 @@
+<div class="container">
+	<div class="screen">
+		<div class="screen__content">
+			<form [formGroup]="loginForm" class="login">
+				<div class="login__field">
+          <i class="login__icon pi pi-user" ></i>
+				 <input formControlName = "email" type="text" class="login__input" placeholder="Email">
+          <small *ngIf=" (getloginForm.email.touched || getloginForm.email.dirty) && getloginForm.email.invalid" class="p-error" >
+            <span *ngIf = "getloginForm.email.errors.required">Email is required</span>
+            <span *ngIf = "getloginForm.email.errors.email">Email is invalid</span>
+          </small>
+				</div>
+				<div class="login__field">
+					<i class="login__icon pi pi-lock"></i>
+					<input formControlName = "password" type="password" class="login__input" placeholder="Password">
+          <small *ngIf=" (getloginForm.password.touched || getloginForm.password.dirty) && getloginForm.password.invalid" class="p-error" >
+            <span *ngIf = "getloginForm.password.errors.required">Password is required</span>
+          </small>
+				</div>
+        <div *ngIf="authError" class="p-error">
+          {{loginError}}
+        </div>
+				<button [disabled]="loginForm.invalid" (click)="onSubmit()" class="login__submit">
+					<span class="button__text">Submit</span>
+					<i class="button__icon fas pi pi-chevron-circle-right"></i>
+				</button>				
+			</form>
+		</div>
+		<div class="screen__background">
+			<span class="screen__background__shape screen__background__shape4"></span>
+			<span class="screen__background__shape screen__background__shape3"></span>		
+			<span class="screen__background__shape screen__background__shape2"></span>
+			<span class="screen__background__shape screen__background__shape1"></span>
+		</div>		
+	</div>
+</div>

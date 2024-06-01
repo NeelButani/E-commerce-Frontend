@@ -1,0 +1,69 @@
+<p-toast></p-toast>
+<p-confirmDialog></p-confirmDialog>
+<div class="admin-page">
+  <p-card header="Users"
+         subheader="List of all Users">
+    <div class="grid">
+      <div class="col-12">
+        <p-toolbar>
+          <div class="p-toolbar-group-start">
+            <p-button label="New"
+                   [raised]="true"
+                   severity="success"
+                   icon="pi pi-plus"
+                   routerLink="form"></p-button>
+          </div>
+        </p-toolbar>
+      </div>
+    </div>
+
+    <div class="grid">
+      <div class="col-12">
+        <p-table styleClass="p-datatable-gridlines"
+               [value]="users"
+               [tableStyle]="{ 'min-width': '50rem' }">
+          <ng-template pTemplate="header">
+            <tr>
+              <th pSortableColumn="name">Name <p-sortIcon field="name"></p-sortIcon></th>
+              <th>Email</th>
+              <th>Is Admin</th>
+              <th>Country</th>
+              <th></th>
+            </tr>
+          </ng-template>
+          <ng-template pTemplate="body"
+                 let-user>
+            <tr>
+
+              <td>{{ user.name }}</td>
+              <td>{{ user.email }}</td>
+              <td>
+                <p-tag *ngIf="user.isAdmin"
+                    icon="pi pi-check"
+                    severity="success"
+                    [rounded]="true"></p-tag>
+                <p-tag *ngIf="!user.isAdmin"
+                    icon="pi pi-times"
+                    severity="danger"
+                    [rounded]="true"></p-tag>
+              </td>
+              <td>{{ getCountryName(user?.country) }}</td>
+
+              <td>
+                <p-button class="mr-2"
+                       [raised]="true"
+                       icon="pi pi-trash"
+                       severity="danger"
+                       (click)="deleteUser(user.id)"></p-button>
+                <p-button [raised]="true"
+                       icon="pi pi-pencil"
+                       (click)="editUser(user.id)"></p-button>
+              </td>
+            </tr>
+          </ng-template>
+        </p-table>
+      </div>
+    </div>
+
+  </p-card>
+</div>
